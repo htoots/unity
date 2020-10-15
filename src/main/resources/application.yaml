@@ -1,0 +1,4 @@
+app:
+  alpha-vantage:
+    url: https://www.alphavantage.co/query
+    key: JDOA57JM70S20O3F
