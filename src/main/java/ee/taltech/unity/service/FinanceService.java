@@ -1,7 +1,7 @@
 package ee.taltech.unity.service;
 
 import ee.taltech.unity.service.alpha.DailyResponse;
-import ee.taltech.unity.service.classes.ResultData;
+import ee.taltech.unity.service.classes.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,8 @@ public class FinanceService {
     private AlphaVantageApi alphaVantageApi;
     @Autowired
     private FinanceCalculator financeCalculator;
-
-    public ResultData queryForData(String symbol) {
+    // TODO: Test
+    public Response queryForData(String symbol) {
         DailyResponse dailyResponse = alphaVantageApi.queryForDaily(symbol);
         return financeCalculator.getNegPosDays(dailyResponse);
     }

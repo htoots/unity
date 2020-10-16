@@ -8,7 +8,8 @@ import java.util.Map;
 
 @Data
 public class DailyResponse {
-
+    @JsonProperty("Error Message")
+    private String error;
     @JsonProperty("Information")
     private String information;
     @JsonProperty("Meta Data")

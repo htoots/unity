@@ -1,7 +1,8 @@
 package ee.taltech.unity.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import ee.taltech.unity.service.FinanceService;
-import ee.taltech.unity.service.classes.ResultData;
+import ee.taltech.unity.service.classes.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ public class FinanceController {
     private FinanceService financeService;
 
     @GetMapping()
-    public ResultData getData(@RequestParam(value = "stock", defaultValue = "IBM") String symbol){
+    // TODO: Test
+    public Response getData(@RequestParam(value = "stock", defaultValue = "IBM") String symbol){
         return financeService.queryForData(symbol);
     }
 

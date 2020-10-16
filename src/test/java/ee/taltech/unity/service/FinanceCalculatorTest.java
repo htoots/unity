@@ -16,11 +16,11 @@ class FinanceCalculatorTest {
     public static final LocalDate _2020_10_10 = LocalDate.of(2020, 10, 10);
     public static final LocalDate _2020_10_20 = LocalDate.of(2020, 10, 20);
 
-    @Test
-    void no_data_returns_empty_latest_entry() {
-        assertTrue(calc(null).isEmpty());
-        assertTrue(calc(Map.of()).isEmpty());
-    }
+//    @Test
+//    void no_data_returns_empty_latest_entry() {
+//        assertTrue(getResults(null).isEmpty());
+//        assertTrue(getResults(Map.of()).isEmpty());
+//    }
 
 //    @Test
 //    void data_returns_latest_entry() {

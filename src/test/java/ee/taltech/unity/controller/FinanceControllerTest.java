@@ -1,6 +1,6 @@
 package ee.taltech.unity.controller;
 
-import ee.taltech.unity.service.classes.ResultData;
+import ee.taltech.unity.service.classes.Response;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +20,22 @@ class FinanceControllerTest {
 
     @Test
     void one_can_get_latest_ibm_data() {
-        ResponseEntity<ResultData> entity = testRestTemplate.getForEntity("/finance", ResultData.class);
+        ResponseEntity<Response> entity = testRestTemplate.getForEntity("/finance", Response.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        ResultData resultData = entity.getBody();
+        Response resultData = entity.getBody();
         assertNotNull(resultData);
         assertEquals("IBM", resultData.getMetaData().getSymbol());
-        assertNotNull(resultData.getResponse());
+        assertNotNull(resultData.getPolarity());
     }
 
     @Disabled
     @Test
     void one_can_get_latest_aapl_data() {
-        ResponseEntity<ResultData> entity = testRestTemplate.getForEntity("/finance?symbol=AAPL", ResultData.class);
+        ResponseEntity<Response> entity = testRestTemplate.getForEntity("/finance?symbol=AAPL", Response.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        ResultData resultData = entity.getBody();
+        Response resultData = entity.getBody();
         assertNotNull(resultData);
         assertEquals("IBM", resultData.getMetaData().getSymbol());
-        assertNotNull(resultData.getResponse());
+        assertNotNull(resultData.getPolarity());
     }
 }

@@ -15,7 +15,7 @@ public class AlphaVantageApi {
     private AlphaVantageConfig config;
     @Autowired
     private RestTemplate restTemplate;
-
+    // TODO: Test
     public DailyResponse queryForDaily(final String symbol){
         String url = config.getUrl()
                 + "?function=" + DAILY

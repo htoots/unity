@@ -5,28 +5,32 @@ import ee.taltech.unity.service.alpha.DataPoint;
 import ee.taltech.unity.service.alpha.Metadata;
 import ee.taltech.unity.service.classes.Meta;
 import ee.taltech.unity.service.classes.Polarity;
-import ee.taltech.unity.service.classes.ResultData;
+import ee.taltech.unity.service.classes.Response;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
-// Change this to return daily full response
 @Service
 public class FinanceCalculator {
+    // TODO: Test
+    public Response getNegPosDays(DailyResponse dailyResponse) {
+        // TODO: Error handling
+        if (dailyResponse.getError() != null) {
+            Response errorResponse = new Response();
 
-    public ResultData getNegPosDays(DailyResponse dailyResponse) {
-        if (dailyResponse == null) {
-            return new ResultData();
+            errorResponse.setError("Invalid API call. Check documentation.");
+            return errorResponse;
         }
+        System.out.println(dailyResponse.toString());
         Meta resultMetaData = new Meta();
         Metadata dailyMetaData = dailyResponse.getMetadata();
 
         resultMetaData.setSymbol(dailyMetaData.getSymbol());
         resultMetaData.setTimeZone(dailyMetaData.getTimeZone());
 
-        ResultData result = new ResultData();
+        Response result = new Response();
         result.setMetaData(resultMetaData);
 
         Polarity listResult = getResults(dailyResponse.getData());
@@ -34,7 +38,7 @@ public class FinanceCalculator {
         result.setPolarity(listResult);
         return result;
     }
-
+    // TODO: Test
     static Polarity getResults(Map<LocalDate, DataPoint> data) {
         Polarity result = new Polarity();
 
