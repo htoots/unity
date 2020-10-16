@@ -1,7 +1,6 @@
 package ee.taltech.unity.controller;
 
-import ee.taltech.unity.service.FinanceResponse;
-import ee.taltech.unity.service.ResultData;
+import ee.taltech.unity.service.classes.ResultData;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

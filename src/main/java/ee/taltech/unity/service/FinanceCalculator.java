@@ -3,19 +3,20 @@ package ee.taltech.unity.service;
 import ee.taltech.unity.service.alpha.DailyResponse;
 import ee.taltech.unity.service.alpha.DataPoint;
 import ee.taltech.unity.service.alpha.Metadata;
+import ee.taltech.unity.service.classes.Meta;
+import ee.taltech.unity.service.classes.Polarity;
+import ee.taltech.unity.service.classes.ResultData;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 // Change this to return daily full response
 @Service
 public class FinanceCalculator {
 
-    public ResultData getLatestQuote(DailyResponse dailyResponse) {
+    public ResultData getNegPosDays(DailyResponse dailyResponse) {
         if (dailyResponse == null) {
             return new ResultData();
         }
@@ -25,46 +26,41 @@ public class FinanceCalculator {
         resultMetaData.setSymbol(dailyMetaData.getSymbol());
         resultMetaData.setTimeZone(dailyMetaData.getTimeZone());
 
-        Optional<HashMap<LocalDate, FinanceResponse>> calcResult = calc(dailyResponse.getData());
-
         ResultData result = new ResultData();
         result.setMetaData(resultMetaData);
-        result.setResponse(calcResult);
-//        Optional<Map.Entry<LocalDate, DataPoint>> lastEntryOp = getLastEntry(dailyResponse.getData());
-//        if (lastEntryOp.isPresent()) {
-//            Map.Entry<LocalDate, DataPoint> maxEntry = lastEntryOp.get();
-//            financeResponse.setDate(maxEntry.getKey());
-//            financeResponse.setPrice(maxEntry.getValue().getClose());
-//        }
+
+        Polarity listResult = getResults(dailyResponse.getData());
+
+        result.setPolarity(listResult);
         return result;
     }
 
-    private String getSymbol(Metadata metadata) {
-        return metadata != null ? metadata.getSymbol() : "no symbol";
-    }
+    static Polarity getResults(Map<LocalDate, DataPoint> data) {
+        Polarity result = new Polarity();
 
-    static Optional<HashMap<LocalDate, FinanceResponse>> calc(Map<LocalDate, DataPoint> data) {
-        if (data == null) return Optional.empty();
-
-        HashMap<LocalDate, FinanceResponse> newData = new HashMap<>();
+        List<LocalDate> positiveList = new ArrayList<>();
+        List<LocalDate> negativeList = new ArrayList<>();
+        List<LocalDate> equalList = new ArrayList<>();
 
         for (LocalDate date : data.keySet()) {
-            FinanceResponse values = new FinanceResponse();
             BigDecimal open = data.get(date).getOpen();
             BigDecimal close = data.get(date).getClose();
-            int comparison = open.compareTo(close);
-
-            values.setOpen(open);
-            values.setClose(close);
-            values.setComparison(comparison);
-
-            newData.put(date, values);
+            int comparison = close.compareTo(open);
+            if (comparison > 0) {
+                result.setPositiveDays(result.getPositiveDays() + 1);
+                positiveList.add(date);
+            } else if (comparison < 0) {
+                result.setNegativeDays(result.getNegativeDays() + 1);
+                negativeList.add(date);
+            } else {
+                result.setEqualDays(result.getEqualDays() + 1);
+                equalList.add(date);
+            }
         }
-        for(LocalDate date : newData.keySet()) {
-            System.out.println(newData.get(date));
-        }
-        Optional returnData = Optional.of(newData);
-        return returnData;
-//        return data.entrySet().stream().max(Map.Entry.comparingByKey());
+        result.setEqualDaysList(equalList);
+        result.setNegativeDaysList(negativeList);
+        result.setPositiveDaysList(positiveList);
+
+        return result;
     }
 }

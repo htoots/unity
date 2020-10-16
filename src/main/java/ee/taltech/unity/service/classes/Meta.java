@@ -1,4 +1,4 @@
-package ee.taltech.unity.service;
+package ee.taltech.unity.service.classes;
 
 import lombok.Data;
 
