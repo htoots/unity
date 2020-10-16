@@ -2,6 +2,7 @@ package ee.taltech.unity.controller;
 
 import ee.taltech.unity.service.FinanceResponse;
 import ee.taltech.unity.service.FinanceService;
+import ee.taltech.unity.service.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class FinanceController {
     private FinanceService financeService;
 
     @GetMapping()
-    public Optional<HashMap<LocalDate, FinanceResponse>> getData(@RequestParam(defaultValue = "IBM") String symbol){
+    public ResultData getData(@RequestParam(defaultValue = "IBM") String symbol){
         return financeService.queryForData(symbol);
     }
 

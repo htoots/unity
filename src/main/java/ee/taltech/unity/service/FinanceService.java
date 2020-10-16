@@ -16,7 +16,7 @@ public class FinanceService {
     @Autowired
     private FinanceCalculator financeCalculator;
 
-    public Optional<HashMap<LocalDate, FinanceResponse>> queryForData(String symbol) {
+    public ResultData queryForData(String symbol) {
         DailyResponse dailyResponse = alphaVantageApi.queryForDaily(symbol);
         return financeCalculator.getLatestQuote(dailyResponse);
     }

@@ -15,12 +15,21 @@ import java.util.Optional;
 @Service
 public class FinanceCalculator {
 
-    public Optional<HashMap<LocalDate, FinanceResponse>> getLatestQuote(DailyResponse dailyResponse) {
+    public ResultData getLatestQuote(DailyResponse dailyResponse) {
         if (dailyResponse == null) {
-            return Optional.empty();
+            return new ResultData();
         }
-        FinanceResponse financeResponse = new FinanceResponse();
-        Optional<HashMap<LocalDate, FinanceResponse>> result = calc(dailyResponse.getData());
+        Meta resultMetaData = new Meta();
+        Metadata dailyMetaData = dailyResponse.getMetadata();
+
+        resultMetaData.setSymbol(dailyMetaData.getSymbol());
+        resultMetaData.setTimeZone(dailyMetaData.getTimeZone());
+
+        Optional<HashMap<LocalDate, FinanceResponse>> calcResult = calc(dailyResponse.getData());
+
+        ResultData result = new ResultData();
+        result.setMetaData(resultMetaData);
+        result.setResponse(calcResult);
 //        Optional<Map.Entry<LocalDate, DataPoint>> lastEntryOp = getLastEntry(dailyResponse.getData());
 //        if (lastEntryOp.isPresent()) {
 //            Map.Entry<LocalDate, DataPoint> maxEntry = lastEntryOp.get();
