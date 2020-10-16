@@ -61,9 +61,9 @@ public class FinanceCalculator {
                 equalList.add(date);
             }
         }
-        result.setEqualDaysList(equalList);
-        result.setNegativeDaysList(negativeList);
-        result.setPositiveDaysList(positiveList);
+        result.setEqualDaysList(result.getEqualDays() == 0 ? null : equalList);
+        result.setNegativeDaysList(result.getNegativeDays() == 0 ? null : negativeList);
+        result.setPositiveDaysList(result.getPositiveDays() == 0 ? null : positiveList);
 
         return result;
     }
