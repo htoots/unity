@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 public class FinanceResponse {
 
-    private String symbol;
-    private LocalDate date;
-    private BigDecimal price;
+    private BigDecimal open;
+    private BigDecimal close;
+    private int comparison;
 }

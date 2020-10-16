@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Optional;
+
 @RequestMapping("/finance")
 @RestController
 public class FinanceController {
@@ -16,7 +20,7 @@ public class FinanceController {
     private FinanceService financeService;
 
     @GetMapping()
-    public FinanceResponse getData(@RequestParam(defaultValue = "IBM") String symbol){
+    public Optional<HashMap<LocalDate, FinanceResponse>> getData(@RequestParam(defaultValue = "IBM") String symbol){
         return financeService.queryForData(symbol);
     }
 
