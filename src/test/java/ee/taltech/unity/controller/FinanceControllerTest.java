@@ -27,7 +27,7 @@ class FinanceControllerTest {
         assertEquals("IBM", resultData.getMetaData().getSymbol());
         assertNotNull(resultData.getPolarity());
     }
-
+    /*
     @Disabled
     @Test
     void one_can_get_latest_aapl_data() {
@@ -37,5 +37,5 @@ class FinanceControllerTest {
         assertNotNull(resultData);
         assertEquals("IBM", resultData.getMetaData().getSymbol());
         assertNotNull(resultData.getPolarity());
-    }
+    }*/
 }
