@@ -3,6 +3,7 @@ package ee.taltech.unity.service;
 import ee.taltech.unity.service.alpha.DailyResponse;
 import ee.taltech.unity.service.alpha.DataPoint;
 import ee.taltech.unity.service.alpha.Metadata;
+import ee.taltech.unity.service.classes.Polarity;
 import ee.taltech.unity.service.classes.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,32 @@ class FinanceCalculatorTest {
         assertEquals(true, testResult.getPolarity().getEqualDaysList().contains(LocalDate.now()), "Localdate is at the wrong spot");
         assertEquals("test symbol", testResult.getMetaData().getSymbol(), "Invalid symbol");
         assertEquals("test timezone", testResult.getMetaData().getTimeZone(), "Invalid timezone");
+    }
+
+    @Test
+    void getNegPosDays_null_value_check()
+    {
+        DailyResponse mockResponse = new DailyResponse();
+        Metadata mockMetaData = new Metadata();
+        DataPoint mockDataPoint = new DataPoint();
+        Map<LocalDate, DataPoint> mockData = new HashMap<>();
+        var emptyPolarity = new Polarity();
+
+        mockResponse.setMetadata(mockMetaData);
+
+        mockDataPoint.setClose(null);
+        mockDataPoint.setHigh(new BigDecimal(150.902));
+        mockDataPoint.setLow(new BigDecimal(130.021));
+        mockDataPoint.setOpen(null);
+        mockDataPoint.setVolume(new BigDecimal(4714320));
+
+        mockData.put(LocalDate.now(), mockDataPoint);
+
+        mockResponse.setData(mockData);
+
+        Response testResult = testCalculator.getNegPosDays(mockResponse);
+        assertEquals(testResult.getPolarity(), emptyPolarity);
+
     }
 
 }
