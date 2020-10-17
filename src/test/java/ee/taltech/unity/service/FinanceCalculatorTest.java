@@ -47,10 +47,10 @@ class FinanceCalculatorTest {
 
         mockResponse.setMetadata(mockMetaData);
 
-        mockDataPoint.setClose(new BigDecimal(140.021));
+        mockDataPoint.setClose(new BigDecimal(140.03));
         mockDataPoint.setHigh(new BigDecimal(140.902));
         mockDataPoint.setLow(new BigDecimal(140.021));
-        mockDataPoint.setOpen(new BigDecimal(140.084));
+        mockDataPoint.setOpen(new BigDecimal(140.03));
         mockDataPoint.setVolume(new BigDecimal(4714320));
 
         mockData.put(LocalDate.now(), mockDataPoint);
@@ -60,8 +60,8 @@ class FinanceCalculatorTest {
         Response testResult = testCalculator.getNegPosDays(mockResponse);
 
         assertEquals(null, testResult.getError(), "Error is not null");
-        assertEquals(1, testResult.getPolarity().getNegativeDays(), "Invalid day calculation");
-        assertEquals(true, testResult.getPolarity().getNegativeDaysList().contains(LocalDate.now()), "Localdate is at the wrong spot");
+        assertEquals(1, testResult.getPolarity().getEqualDays(), "Invalid day calculation");
+        assertEquals(true, testResult.getPolarity().getEqualDaysList().contains(LocalDate.now()), "Localdate is at the wrong spot");
         assertEquals("test symbol", testResult.getMetaData().getSymbol(), "Invalid symbol");
         assertEquals("test timezone", testResult.getMetaData().getTimeZone(), "Invalid timezone");
     }
