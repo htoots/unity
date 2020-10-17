@@ -5,6 +5,7 @@ import ee.taltech.unity.service.alpha.DataPoint;
 import ee.taltech.unity.service.alpha.Metadata;
 import ee.taltech.unity.service.classes.Polarity;
 import ee.taltech.unity.service.classes.Response;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ee.taltech.unity.service.FinanceCalculator.isParsable;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FinanceCalculatorTest {
@@ -93,4 +95,13 @@ class FinanceCalculatorTest {
 
     }
 
+    @Test
+    void isNumberParsable() {
+        String setClose = "five";
+
+
+        var testResult = isParsable(setClose);
+        assertEquals(testResult, false);
+
+    }
 }

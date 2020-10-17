@@ -15,6 +15,7 @@ import java.util.*;
 
 @Service
 public class FinanceCalculator {
+
     // TODO: Test
     public Response getNegPosDays(DailyResponse dailyResponse) {
         if (dailyResponse == null || dailyResponse.getError() != null) {
