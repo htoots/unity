@@ -7,6 +7,7 @@ import ee.taltech.unity.service.classes.Meta;
 import ee.taltech.unity.service.classes.Polarity;
 import ee.taltech.unity.service.classes.Response;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -44,19 +45,35 @@ public class FinanceCalculator {
         List<LocalDate> equalList = new ArrayList<>();
 
         for (LocalDate date : data.keySet()) {
-            BigDecimal open = data.get(date).getOpen();
-            BigDecimal close = data.get(date).getClose();
-            int comparison = close.compareTo(open);
-            if (comparison > 0) {
-                result.setPositiveDays(result.getPositiveDays() + 1);
-                positiveList.add(date);
-            } else if (comparison < 0) {
-                result.setNegativeDays(result.getNegativeDays() + 1);
-                negativeList.add(date);
-            } else {
-                result.setEqualDays(result.getEqualDays() + 1);
-                equalList.add(date);
+            var dataNumbers = data.get(date);
+
+            //check null values
+            if(dataNumbers.getOpen() == null || dataNumbers.getClose() == null)
+            {
+                continue;
             }
+
+            //check if they are numeric
+            var isOpeningParsable = isParsable(dataNumbers.getOpen().toString());
+            var isClosingParsable = isParsable(dataNumbers.getClose().toString());
+
+            if(isOpeningParsable && isClosingParsable)
+            {
+                BigDecimal open = data.get(date).getOpen();
+                BigDecimal close = data.get(date).getClose();
+                int comparison = close.compareTo(open);
+                if (comparison > 0) {
+                    result.setPositiveDays(result.getPositiveDays() + 1);
+                    positiveList.add(date);
+                } else if (comparison < 0) {
+                    result.setNegativeDays(result.getNegativeDays() + 1);
+                    negativeList.add(date);
+                } else {
+                    result.setEqualDays(result.getEqualDays() + 1);
+                    equalList.add(date);
+                }
+            }
+
         }
         result.setEqualDaysList(result.getEqualDays() == 0 ? null : equalList);
         result.setNegativeDaysList(result.getNegativeDays() == 0 ? null : negativeList);
@@ -64,4 +81,37 @@ public class FinanceCalculator {
 
         return result;
     }
+
+    public static boolean isParsable(final String str) {
+             if (StringUtils.isEmpty(str)) {
+                       return false;
+                 }
+             if (str.charAt(str.length() - 1) == '.') {
+                    return false;
+                }
+               if (str.charAt(0) == '-') {
+                      if (str.length() == 1) {
+                              return false;
+                           }
+                      return withDecimalsParsing(str, 1);
+                  }
+               return withDecimalsParsing(str, 0);
+           }
+
+    private static boolean withDecimalsParsing(final String str, final int beginIdx) {
+           int decimalPoints = 0;
+        for (int i = beginIdx; i < str.length(); i++) {
+                     final boolean isDecimalPoint = str.charAt(i) == '.';
+                    if (isDecimalPoint) {
+                              decimalPoints++;
+                       }
+                   if (decimalPoints > 1) {
+                         return false;
+                     }
+                      if (!isDecimalPoint && !Character.isDigit(str.charAt(i))) {
+                            return false;
+                          }
+                   }
+               return true;
+         }
 }
