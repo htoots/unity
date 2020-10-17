@@ -98,8 +98,6 @@ class FinanceCalculatorTest {
     @Test
     void isNumberParsable() {
         String setClose = "five";
-
-
         var testResult = isParsable(setClose);
         assertEquals(testResult, false);
 
