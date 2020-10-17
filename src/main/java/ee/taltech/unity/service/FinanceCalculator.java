@@ -16,14 +16,11 @@ import java.util.*;
 public class FinanceCalculator {
     // TODO: Test
     public Response getNegPosDays(DailyResponse dailyResponse) {
-        // TODO: Error handling
-        if (dailyResponse.getError() != null) {
+        if (dailyResponse == null || dailyResponse.getError() != null) {
             Response errorResponse = new Response();
-
             errorResponse.setError("Invalid API call. Check documentation.");
             return errorResponse;
         }
-        System.out.println(dailyResponse.toString());
         Meta resultMetaData = new Meta();
         Metadata dailyMetaData = dailyResponse.getMetadata();
 
@@ -39,7 +36,7 @@ public class FinanceCalculator {
         return result;
     }
     // TODO: Test
-    static Polarity getResults(Map<LocalDate, DataPoint> data) {
+    public Polarity getResults(Map<LocalDate, DataPoint> data) {
         Polarity result = new Polarity();
 
         List<LocalDate> positiveList = new ArrayList<>();
