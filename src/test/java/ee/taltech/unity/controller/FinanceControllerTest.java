@@ -27,15 +27,13 @@ class FinanceControllerTest {
         assertEquals("IBM", resultData.getMetaData().getSymbol());
         assertNotNull(resultData.getPolarity());
     }
-    /*
-    @Disabled
     @Test
     void one_can_get_latest_aapl_data() {
         ResponseEntity<Response> entity = testRestTemplate.getForEntity("/finance?symbol=AAPL", Response.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
         Response resultData = entity.getBody();
         assertNotNull(resultData);
-        assertEquals("IBM", resultData.getMetaData().getSymbol());
+        assertEquals("AAPL", resultData.getMetaData().getSymbol());
         assertNotNull(resultData.getPolarity());
-    }*/
+    }
 }
