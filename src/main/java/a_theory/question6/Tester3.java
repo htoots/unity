@@ -9,6 +9,8 @@ public class Tester3 {
     //todo p1
     // First. Write the definition and explain what is it.
 
+
+
     //todo p2
     // Second. Write the definition and explain what is it.
 }
