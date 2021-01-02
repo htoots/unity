@@ -7,6 +7,10 @@ Hannes toots - htoots
 
 Levent Alici - mealic
 
+## Server IP
+
+http://3.137.182.74:8080/
+
 ## Setup (details in wiki)
 
 **Clone repo**
