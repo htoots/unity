@@ -11,7 +11,9 @@ This repo contains our first and third project code in ICS0024.
 
 http://3.137.182.74:8080/
 
-## Setup (details in wiki)
+Details of server setup in wiki
+
+## Docker Setup 
 
 **Clone repo**
 
