@@ -18,7 +18,7 @@ public class FinanceController {
 
     @GetMapping()
     // TODO: Test
-    public Response getData(@RequestParam(value = "symbol", defaultValue = "AAPL") String symbol){
+    public Response getData(@RequestParam(value = "symbol", defaultValue = "IBM") String symbol){
         return financeService.queryForData(symbol);
     }
 
