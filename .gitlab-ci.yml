@@ -6,6 +6,8 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
+image:dind
+
 test calc:
   stage: test
   tags:
@@ -28,6 +30,7 @@ build calc:
     - ./gradlew assemble
 
 deploy calc:
+  image: docker:latest
   stage: deploy
   tags:
     - calc
