@@ -32,8 +32,6 @@ deploy calc:
   tags:
     - calc
   script:
-    - mkdir -p ~/api-deployment
-    - rm -rf ~/api-deployment/*
-    - cp -r build/libs/. ~/api-deployment
-    - sudo service calculator restart
+    - docker build -t htoots/unity --build-arg JAR_FILE=build/libs/*.jar .
+    - docker run htoots/unity
 
