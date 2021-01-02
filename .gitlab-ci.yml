@@ -6,8 +6,6 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-image:dind
-
 test calc:
   stage: test
   tags:
