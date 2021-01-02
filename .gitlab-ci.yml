@@ -32,6 +32,5 @@ deploy calc:
   tags:
     - calc
   script:
-    - mkdir -p ~/api-deployment
-    - rm -rf ~/api-deployment
-    - cp -r build/libs/. ~/api-deployment
+    - docker build -t unity --build-arg JAR_FILE=build/libs/*.jar .
+    - docker run -p 8080:8080 unity
