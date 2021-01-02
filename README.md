@@ -3,9 +3,9 @@
 This repo contains our first and third project code in ICS0024.
 
 ## Authors
-Hannes toots - htoots
+[Hannes toots](https://gitlab.cs.ttu.ee/htoots)
 
-Levent Alici - mealic
+[Levent Alici](https://gitlab.cs.ttu.ee/mealic)
 
 ## Server IP
 
