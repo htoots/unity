@@ -1,8 +1,13 @@
 # Unity
 
-This repo contains our first and third project code in ICS0024
+This repo contains our first and third project code in ICS0024.
 
-## Setup
+## Authors
+Hannes toots - htoots
+
+Levent Alici - mealic
+
+## Setup (details in wiki)
 
 **Clone repo**
 
@@ -10,11 +15,8 @@ This repo contains our first and third project code in ICS0024
 
 **Build docker**
 
-`docker build --build-arg JAR_FILE=build/libs/*.jar -t unity/api .`
+`docker build --build-arg JAR_FILE=build/libs/*.jar -t <containertag> .`
 
 **Run docker**
 
-`docker run -p 8080:8080 unity/api`
-
-
-test
+`docker run -p 8080:8080 <containertag>`
