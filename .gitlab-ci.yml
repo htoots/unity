@@ -32,10 +32,5 @@ deploy calc:
   tags:
     - calc
   script:
-<<<<<<< HEAD
     - docker build -t unity --build-arg JAR_FILE=build/libs/*.jar .
     - docker run -p 8080:8080 unity
-=======
-    - docker build -t htoots/unity --build-arg JAR_FILE=build/libs/*.jar .
-    - docker run htoots/unity
->>>>>>> 4fccfb191d0c8ea838f7bff0263f33e24a8f016b
