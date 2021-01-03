@@ -8,7 +8,7 @@ plugins {
 apply plugin: 'jacoco'
 
 group = 'ee.taltech'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 repositories {
