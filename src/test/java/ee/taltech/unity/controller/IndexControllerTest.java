@@ -10,7 +10,7 @@ class IndexControllerTest {
     @Test
     void index_returns_correct_string() {
         var indexController = new IndexController().index();
-        var expectedResponse = "API is up";
+        var expectedResponse = "API is up and can be seen on /api/finance (?symbol=IBM).";
 
         assertEquals(indexController, expectedResponse);
 
