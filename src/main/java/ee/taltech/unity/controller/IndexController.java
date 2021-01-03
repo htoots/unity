@@ -16,7 +16,7 @@ public class IndexController implements ErrorController{
 
     @RequestMapping(value = PATH)
     public String error() {
-        return "This is a skeleton whitelabel error prevention. The page you have arrived to does not exist.";
+        return "The page you have arrived to does not exist.";
     }
 
     @Override
