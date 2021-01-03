@@ -9,7 +9,7 @@ This repo contains our first and third project code in ICS0024.
 
 ## Server IP
 
-http://3.137.182.74:8080/
+http://13.49.224.68
 
 Details of server setup in wiki
 
