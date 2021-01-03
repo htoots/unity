@@ -9,7 +9,7 @@ public class IndexController implements ErrorController{
 
     @GetMapping
     public String index(){
-        return "API is up";
+        return "API is up and can be seen on /api/finance (?symbol=IBM).";
     }
 
     private static final String PATH = "/error";
