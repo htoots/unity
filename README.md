@@ -13,6 +13,10 @@ http://13.49.224.68
 
 Details of server setup in wiki
 
+## Domain
+
+https://financeprj21.ml/
+
 ## Docker Setup 
 
 **Clone repo**
