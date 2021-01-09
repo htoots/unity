@@ -17,6 +17,13 @@ Details of server setup in wiki
 
 https://financeprj21.ml/
 
+Domain is registered through freenom.com
+
+AWS is used for cloud services and namespaces taken from AWS instance were added on freenom
+
+
+Nginx certbot was used to enable HTTPS.
+
 ## Docker Setup 
 
 **Clone repo**
