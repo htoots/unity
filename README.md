@@ -24,6 +24,12 @@ AWS is used for cloud services and namespaces taken from AWS instance were added
 
 Nginx certbot was used to enable HTTPS.
 
+Commands for enabling https:
+
+sudo  add-apt-repository ppa:certbot/certbot
+
+sudo certbot --nginx
+
 ## Docker Setup 
 
 **Clone repo**
