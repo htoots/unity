@@ -1,4 +1,4 @@
-# Unity
+# Unity (outdated readme)
 
 This repo contains our first and third project code in ICS0024.
 
@@ -30,7 +30,7 @@ sudo  add-apt-repository ppa:certbot/certbot
 
 sudo certbot --nginx
 
-## Docker Setup 
+## Docker Setup
 
 **Clone repo**
 
